@@ -1,4 +1,9 @@
-import {Observable, QueryRouter, Loader, sessionService} from '/js/src/index.js';
+import {
+  Observable,
+  QueryRouter,
+  Loader,
+  sessionService,
+} from "/js/src/index.js";
 
 /**
  * Root of model tree
@@ -30,10 +35,12 @@ export default class Model extends Observable {
    */
   handleLocationChange() {
     switch (this.router.params.page) {
-      case 'home':
+      case "about":
+        break;
+      case "home":
         break;
       default:
-        this.router.go('?page=home');
+        this.router.go("?page=home");
         break;
     }
   }

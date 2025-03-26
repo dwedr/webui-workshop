@@ -10,5 +10,5 @@ wsConnector.onopen = function () {
 };
 
 wsConnector.onmessage = function (message) {
-  console.log("Received message:", JSON.parse(message.data).payload);
+  console.log("Received message:", message.data);
 };
