@@ -1,13 +1,13 @@
 import sessionService from "/js/src/sessionService.js";
 import { mount } from "/js/src/index.js";
 import view from "./view.js";
-import Model from "./Model.js";
+import About from "./about/About.js";
 
 sessionService.loadAndHideParameters();
 window.sessionService = sessionService;
 
 // Start application
-const model = new Model();
+const model = new About();
 const debug = true; // shows when redraw is done
 mount(document.body, view, model, debug);
 
