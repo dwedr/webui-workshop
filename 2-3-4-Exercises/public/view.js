@@ -1,6 +1,6 @@
 import { h, switchCase } from "/js/src/index.js";
-import aboutContent from "./about/aboutPage.js";
-import homeContent from "./home/homePage.js";
+import contentAbout from "./about/aboutPage.js";
+import contentHome from "./home/homePage.js";
 
 /**
  * Main view layout
@@ -40,7 +40,7 @@ const content = (model) => {
   } = router;
 
   return switchCase(page, {
-    home: homeContent,
-    about: aboutContent,
+    home: contentHome,
+    about: contentAbout,
   })(model);
 };

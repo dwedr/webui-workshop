@@ -28,6 +28,9 @@ export default class Model extends Observable {
     this.router.bubbleTo(this);
 
     this.handleLocationChange(); // Init first page
+    this.userName = "username";
+    this.object = {};
+    this.requestedTime = 10;
   }
 
   /**
@@ -43,5 +46,20 @@ export default class Model extends Observable {
         this.router.go("?page=home");
         break;
     }
+  }
+
+  getDetails() {
+    this.requestedTime += 1;
+    this.object[this.requestedTime] = "Something" + this.requestedTime;
+    this.notify();
+  }
+
+  getUserName() {
+    return this.userName;
+  }
+
+  setUserName() {
+    this.userName = "Damian";
+    this.notify();
   }
 }
