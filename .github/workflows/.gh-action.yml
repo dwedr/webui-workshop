@@ -27,7 +27,7 @@ jobs:
         working-directory: 2-3-4-Exercises
 
   test-ubuntu:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
