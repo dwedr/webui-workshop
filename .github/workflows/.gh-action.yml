@@ -19,12 +19,13 @@ jobs:
 
       - name: Install dependencies
         run: |
+          ls -al
           cd 2-3-4-Exercises
           npm ci
           npm run test
       - name: Run tests
         run: |
-          cd ./2-3-4-Exercises/
+          cd 2-3-4-Exercises
           npm run test
         working-directory: 2-3-4-Exercises
 
