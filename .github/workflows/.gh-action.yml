@@ -1,23 +1,21 @@
 name: Run Tests
 
-
-
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   test-macos:
     runs-on: macOS-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4  
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x'  
+          node-version: "22.x"
 
       - name: Install dependencies
         run: |
@@ -25,28 +23,28 @@ jobs:
           npm ci
           npm run test
       - name: Run tests
-        run: | 
-          cd 2-3-4-Exercises
-          npm run test  
+        run: |
+          cd ./2-3-4-Exercises/
+          npm run test
         working-directory: 2-3-4-Exercises
 
   test-ubuntu:
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22.x' 
+          node-version: "22.x"
 
       - name: Install dependencies
         run: |
-          cd 2-3-4-Exercises
+          cd ./2-3-4-Exercises/
           npm ci
           npm run test
       - name: Run tests
-        run: | 
+        run: |
           cd 2-3-4-Exercises
-          npm run test  
+          npm run test
