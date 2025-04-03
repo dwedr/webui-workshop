@@ -43,4 +43,5 @@ jobs:
           npm ci
       - name: Run tests
         run: |
+          cd 2-3-4-Exercises
           npm run test
