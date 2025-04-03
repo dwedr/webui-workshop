@@ -20,7 +20,7 @@ after(async function () {
   server.kill();
 });
 
-describe("Connection Test", async function () {
+describe("Connection Test",  function () {
   it("Succesful connection", async function () {
     this.timeout(5000);
 
@@ -31,7 +31,7 @@ describe("Connection Test", async function () {
   });
 });
 
-describe("Routing check", async function () {
+describe("Routing check",  function () {
   it("Checks title correctness", async function () {
     await Promise.all([
       page.waitForNavigation(),
@@ -53,7 +53,7 @@ describe("Routing check", async function () {
   });
 });
 
-describe("Checks button`s display", async function () {
+describe("Checks button`s display",  function () {
   it("aboutButton check", async function () {
     const expectedClass = "btn-primary";
 
