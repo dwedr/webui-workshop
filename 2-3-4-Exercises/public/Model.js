@@ -32,17 +32,22 @@ export default class Model extends Observable {
 
     this.randomNumber = 0;
 
-    this.ws = new WebSocketClient("ws://localhost:8080");
+    this.ws = new WebSocketClient();
 
     this.ws.addListener("authed", () => {
       console.log("connected!");
       this.ws.sendMessage({ command: "random" });
     });
 
-    this.ws.addListener("random-res", (message) => {
-      this.randomNumber = message.payload;
-      this.notify();
-      console.log("Number:", this.randomNumber);
+    this.ws.addListener("command", (message) => {
+      if (message.command === "random-res") {
+        console.log(message);
+        this.randomNumber = message.payload.number;
+        this.notify();
+        console.log("Number:", this.randomNumber);
+      } else if (message.command === "repeat") {
+        this.ws.sendMessage({ command: "random" });
+      }
     });
 
     this.ws.addListener("error", (error) => {
@@ -57,7 +62,6 @@ export default class Model extends Observable {
     this.aboutModel = new About(this.loader);
     this.aboutModel.bubbleTo(this);
 
-   
     this.handleLocationChange(); // Init first page
   }
 

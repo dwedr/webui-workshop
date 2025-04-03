@@ -1,4 +1,4 @@
-import { Observable, fetchClient, RemoteData } from "/js/src/index.js";
+import { Observable, RemoteData } from "/js/src/index.js";
 
 export const getFetchStatus = (remoteData) => {
   return remoteData.match({

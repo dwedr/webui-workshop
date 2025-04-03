@@ -3,13 +3,6 @@ import Button from "../components/Button.js";
 import { iconBook } from "/js/src/icons.js";
 import { getFetchStatus } from "./About.js";
 
-const fetchStatus = (model) => {
-  return h(
-    "p.text-center.success",
-    getFetchStatus(model.aboutModel.remoteData)
-  );
-};
-
 const mappedRow = (rowData) => {
   const td = rowData.map((data) => h("td", data));
   return h("tr", td);
@@ -17,14 +10,11 @@ const mappedRow = (rowData) => {
 
 const renderTable = (jsonData) => {
   const tableData = [];
-
-  const headers = Object.keys(jsonData);
+  const headers = ["Type", "Value"];
   tableData.push(headers);
 
-  const maxRows = Math.max(...Object.values(jsonData).map((arr) => arr.length));
-  for (let i = 0; i < maxRows; i++) {
-    const row = headers.map((key) => jsonData[key][i] || "no data");
-    tableData.push(row);
+  for (const [key, value] of Object.entries(jsonData)) {
+    tableData.push([key, value]);
   }
 
   return h("table.table", [
@@ -43,7 +33,7 @@ const renderTable = (jsonData) => {
 
 const content = (model) => {
   return h("", [
-    fetchStatus(model),
+    h("p.text-center.success", getFetchStatus(model.aboutModel.remoteData)),
     Button("Home", (e) => model.router.handleLinkEvent(e), "?page=home"),
     Button(["Get data", iconBook()], () => {
       model.aboutModel.getDetails();

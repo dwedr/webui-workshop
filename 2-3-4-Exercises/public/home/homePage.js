@@ -9,7 +9,7 @@ const content = (model) => {
     Button("About", (e) => model.router.handleLinkEvent(e), "?page=about"),
     Button(
       ["Get username", iconPerson()],
-      () => (userName = "HI: " + model.homeModel.userName)
+      () => (userName = model.homeModel.userName)
     ),
     h("p", userName),
   ]);

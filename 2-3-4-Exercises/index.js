@@ -14,14 +14,17 @@ http.get("/info", (_req, res) => {
 
 const ws = new WebSocket(http);
 
-ws.bind("random", async (msg) => {
+ws.bind("random", (msg) => {
   console.log(msg);
   try {
-    const randomNum = Math.floor(Math.random() * 10);
     return new WebSocketMessage()
       .setCommand("random-res")
-      .setPayload(randomNum);
+      .setPayload({ number: Math.floor(Math.random() * 10) });
   } catch (error) {
     return new WebSocketMessage().setCommand("error").setPayload(error.message);
   }
 });
+
+setInterval(() => {
+  ws.broadcast(new WebSocketMessage().setCommand("repeat"));
+}, 5000);
