@@ -19,10 +19,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          ls -al
-          cd 2-3-4-Exercises
           npm ci
-          npm run test
       - name: Run tests
         run: |
           cd 2-3-4-Exercises
@@ -42,9 +39,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./2-3-4-Exercises/
           npm ci
-          npm run test
       - name: Run tests
         run: |
           cd 2-3-4-Exercises
