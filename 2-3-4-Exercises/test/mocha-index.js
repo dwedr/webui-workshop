@@ -33,12 +33,14 @@ describe("Connection Test", function () {
 
 describe("Routing check", function () {
   it("Checks title correctness", async function () {
-    await Promise.all([
-      page.click('a[href="?page=about"]'),
-      page.waitForSelector("div.p2.shadow-level2.level2.success"),
-      page.waitForNavigation(),
-    ]);
-
+    this.timeout(5000);
+    await page.waitForSelector('a[href="?page=about"]', { visible: true });
+    await page.click('a[href="?page=about"]');
+    await page.waitForFunction(() =>
+      document
+        .querySelector("div.p2.shadow-level2.level2.success")
+        ?.textContent.includes("about")
+    );
     this.timeout(2000);
 
     const url = await page.url();
