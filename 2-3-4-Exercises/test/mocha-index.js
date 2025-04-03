@@ -35,7 +35,7 @@ describe("Routing check", function () {
   it("Checks title correctness", async function () {
     await Promise.all([
       page.click('a[href="?page=about"]'),
-      page.waitForNavigation(),
+      page.waitForSelector("div.p2.shadow-level2.level2.success"),
     ]);
 
     this.timeout(2000);
