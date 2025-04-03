@@ -7,7 +7,11 @@ import contentHome from "./home/homePage.js";
  * @return {vnode} application view to be drawn according to model
  */
 export default (model) => [
-  h(".flex-column.absolute-fill", [header(model), content(model)]),
+  h(".flex-column.absolute-fill", [
+    randomNumberNode(model),
+    header(model),
+    content(model),
+  ]),
 ];
 
 /**
@@ -16,17 +20,18 @@ export default (model) => [
  */
 const header = (model) => {
   const { router } = model;
-  const {
-    params: { page },
-  } = router;
-
+  const { params } = router;
   return h(
-    ".p2.shadow-level2.level2",
+    ".p2.shadow-level2.level2.success",
     {
       style: "display: flex; justify-content: center",
     },
-    `Welcome to your ${page} page`
+    `Welcome to ${params.page}`
   );
+};
+
+const randomNumberNode = (model) => {
+  return h("p.success", model.randomNumber);
 };
 
 /**

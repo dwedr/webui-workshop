@@ -1,15 +1,43 @@
-import Home from "../home/Home.js";
+import { Observable, fetchClient, RemoteData } from "/js/src/index.js";
 
-export default class About extends Home {
-  constructor() {
+export const getFetchStatus = (remoteData) => {
+  return remoteData.match({
+    NotAsked: () => "No data fetched",
+    Loading: () => "Loading",
+    Success: (_res) => `Loaded`,
+    Failure: (error) => `Error: ${error.message}`,
+  });
+};
+
+export default class About extends Observable {
+  constructor(loader) {
     super();
-    this.object = {};
-    this.requestedTime = 10;
+    this.data = {};
+    this.requestedTimes = 0;
+    this.loader = loader;
+
+    this.remoteData = RemoteData.NotAsked();
   }
 
   getDetails() {
-    this.requestedTime += 1;
-    this.object[this.requestedTime] = "Something" + this.requestedTime;
+    this.remoteData = RemoteData.loading();
+
+    this.requestedTimes++;
     this.notify();
+
+    this.loader
+      .get("/api/info")
+      .then(async (res) => {
+        this.data = await res.result.data;
+        this.remoteData = RemoteData.success();
+        this.notify();
+        console.log(res.result.data);
+        return this.data;
+      })
+      .catch((_) => {
+        this.remoteData = RemoteData.failure();
+        this.notify();
+        return {};
+      });
   }
 }

@@ -1,17 +1,17 @@
-import Model from "../Model.js";
+import { Observable } from "/js/src/index.js";
 
-export default class Home extends Model {
+export default class Home extends Observable {
   constructor() {
     super();
-    this.userName = "username";
+    this.userName = "Damian";
+  }
+
+  setUserName(newUser) {
+    this.userName = newUser;
+    this.notify();
   }
 
   getUserName() {
     return this.userName;
-  }
-
-  setUserName() {
-    this.userName = "Damian";
-    this.notify();
   }
 }
